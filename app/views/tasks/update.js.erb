@@ -1,0 +1,24 @@
+$("#tasks ul").prepend("<%= j(render @task) %>")
+$("#form-task").modal("hide")
+$("#no-tasks").hide()
+
+var $alertCreate = $('#alert-create-task')
+
+if ("<%= notice %>") {
+  $alertCreate
+    .addClass('alert-success')
+    .find('p')
+      .text("<%= notice %>")
+}
+
+if ("<%= alert %>") {
+  $alertCreate
+    .addClass('alert-danger')
+    .find('p')
+      .text("<%= alert %>")
+}
+
+$alertCreate
+  .removeClass('hidden')
+
+setTimeout(function(){ $alertCreate.fadeToggle( "fast", "linear" ) }, 3000);

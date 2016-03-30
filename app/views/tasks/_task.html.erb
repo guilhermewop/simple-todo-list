@@ -1,0 +1,53 @@
+<li class="list-group-item" id="task-id-<%= task.id %>">
+  <!-- <a href="#"> -->
+    <div class="row">
+      <div class="col-md-1 text-center">
+        <div class="btn-group" role="group" data-toggle="buttons">
+          <!-- <button class="btn btn-primary btn-sm <%= 'active' if task.completed? %>" type="button">
+            <span aria-hidden="true" class="glyphicon glyphicon-ok"></span>
+          </button> -->
+
+          <%= button_to task, class: 'btn btn-primary btn-sm', remote: true, method: :update do %>
+            <%= content_tag :span, '', "aria-hidden" => "true", class: "glyphicon glyphicon-ok" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-7 text-left">
+        <h4><%= task.title %></h4>
+      </div>
+      <div class="col-md-4 col-xs-12">
+        <div class="btn-toolbar btn-group-sm pull-right" role="toolbar" aria-label="...">
+          <div class="btn-group" role="group">
+            <button class="btn btn-default btn-sm" type="button">
+              <span class="badge"><%= task.subtasks.count %></span> Subtasks
+            </button>
+          </div>
+          <div class="btn-group" role="group">
+            <button class="btn btn-primary btn-sm" type="button">
+              <span aria-hidden="true" class="glyphicon glyphicon-plus"></span>
+            </button>
+          </div>
+
+          <div class="btn-group" role="group">
+            <%= link_to edit_task_path(task), remote: true, class: 'btn btn-info btn-sm' do %>
+              <%= content_tag :span, '', "aria-hidden" => "true", class: "glyphicon glyphicon-edit" %>
+            <% end %>
+          </div>
+
+          <div class="btn-group" role="group" data-toggle="buttons">
+            <button class="btn btn-warning btn-sm <%= privacity_class(task) %>" type="button">
+              <span aria-hidden="true" class="glyphicon glyphicon-lock"></span>
+            </button>
+            <input type="checkbox" name="my-checkboax" checked>
+          </div>
+
+          <div class="btn-group" role="group">
+            <%= button_to task, class: 'btn btn-danger btn-sm', remote: true, method: :delete do %>
+              <%= content_tag :span, '', "aria-hidden" => "true", class: "glyphicon glyphicon-trash" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- </a> -->
+</li>

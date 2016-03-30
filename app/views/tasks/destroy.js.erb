@@ -1,0 +1,25 @@
+$("#tasks").find("#task-id-<%= @task.id %>").remove();
+
+if ($("#tasks > ul.list-group").length == 0) {
+  $('.no-tasks').show();
+}
+
+var $alertCreate = $('#alert-create-task')
+
+if ("<%= notice %>") {
+  $alertCreate
+    .addClass('alert-success')
+    .find('p')
+      .text("<%= notice %>")
+}
+
+if ("<%= alert %>") {
+  $alertCreate
+    .addClass('alert-danger')
+    .find('p')
+      .text("<%= alert %>")
+}
+
+$alertCreate
+  .removeClass('hidden')
+  .show()
