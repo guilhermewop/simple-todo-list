@@ -9,12 +9,12 @@
         <%= link_to 'New', new_task_path, class: 'btn btn-primary btn-lg', remote: true %>
       </h1>
 
-      <div class="modal fade" id="form-task" tabindex="-1" role="dialog"></div>
+      <div class="modal fade" id="modal-task" tabindex="-1" role="dialog"></div>
   </div>
 
   <div id="tasks" class="row">
     <div class="col-md-12">
-        <div id="alert-create-task" class="alert alert-dismissible hidden" role="alert">
+        <div id="alert-task" class="alert alert-success alert-dismissible hidden" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

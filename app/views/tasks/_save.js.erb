@@ -1,0 +1,26 @@
+$("ul.errors").html("")
+<% if @task.errors.any? %>
+  <% @task.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
+  <% end %>
+<% else %>
+  <% if @task.new_record? %>
+    $("#tasks ul").prepend("<%= j(render @task) %>");
+  <% else %>
+    $("#task-id-<%= @task.id %>").replaceWith("<%= j(render @task) %>")  
+  <% end %>
+
+  $("#modal-task").modal("hide");
+  $("#no-tasks").hide();
+
+  var $alert = $('#alert-task');
+
+  $alert.find('p').html("<%= notice %>");
+  $alert.removeClass('hidden');
+
+  setTimeout(function() {
+      $alert.fadeToggle('fast', 'linear')
+    },
+    3000
+  );
+<% end %>
