@@ -7,5 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 (1..10).each do |n|
-  Task.create(title: 'Tarefa ' + n.to_s, is_public: [true, false].shuffle)
+  Task.create(title: 'Tarefa ' + n.to_s)
 end

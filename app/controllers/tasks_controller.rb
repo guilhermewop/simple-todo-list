@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   respond_to :html, :js, :json
 
   def index
-    @tasks = Task.only_parent.most_recent
+    @tasks = Task.only_parent.order(completed_at: :asc, created_at: :desc)
   end
 
   def new
@@ -21,9 +21,9 @@ class TasksController < ApplicationController
 
   def privacy
     @task = Task.find(params[:id])
-    privacy = 'false' == params[:private]
+    privacy = 'true' == params[:private]
 
-    @task.update(is_public: privacy)
+    @task.update(is_private: privacy)
   end
 
   def edit
@@ -36,8 +36,9 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
-
     @task.update(task_params)
+
+    respond_with(@task)
   end
 
   def create
@@ -56,6 +57,6 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:title, :public)
+    params.require(:task).permit(:title, :public, :is_private)
   end
 end
