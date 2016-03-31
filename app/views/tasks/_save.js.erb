@@ -1,8 +1,5 @@
 <% if @task.errors.any? %>
-  $("ul.errors").html("")
-  <% @task.errors.full_messages.each do |message| %>
-    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
-  <% end %>
+  $("#modal-task").html("<%= j(render 'form', locals: {task: @task}) %>");
 <% else %>
   var $task_item = $("#task-id-<%= @task.id %>");
 

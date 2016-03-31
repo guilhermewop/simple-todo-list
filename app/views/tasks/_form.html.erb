@@ -8,8 +8,6 @@
         <h4 class="modal-title"><%= form_title @task %></h4>
       </div>
       <div class="modal-body">
-          <ul class="errors"></ul>
-
           <%= f.input :title, required: true %>
           <%= f.input :is_private, label: 'Private' %>
       </div>
