@@ -1,27 +1,30 @@
 <div class="container">
-  <div class="jumbotron hidden">
-    <h1>Task#index</h1>
-    <p>Find me in app/views/task/index.html.erb</p>
-  </div>
-
   <div class="page-header">
-      <h1>Tasks
-        <%= link_to 'New', new_task_path, class: 'btn btn-primary btn-lg', remote: true %>
-      </h1>
-
-      <div class="modal fade" id="modal-task" tabindex="-1" role="dialog"></div>
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <h1>
+          Tasks
+          <%= link_to 'New', new_task_path, class: 'btn btn-primary btn-lg', remote: true %>
+        </h1>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div id="alert-save" class="alert alert-success alert-dismissible hidden" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <p>asass</p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 hidden-sm hidden-xs"></div>
+    </div>
+    <div class="modal fade" id="modal-task" tabindex="-1" role="dialog"></div>
   </div>
 
   <div id="tasks" class="row">
     <div class="col-md-12">
-        <div id="alert-task" class="alert alert-success alert-dismissible hidden" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <p></p>
+        <div id="alert-no-tasks" class="alert alert-info <%= 'hidden' unless @tasks.count == 0 %>" role="alert">
+          There are no tasks!
         </div>
-
-        <div class="alert alert-info no-tasks <%= 'hidden' unless @tasks.count == 0 %>" role="alert">Nenhum registro</div>
 
         <ul class="list-group">
           <%= render @tasks %>

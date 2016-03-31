@@ -9,28 +9,14 @@ class TasksController < ApplicationController
     @task = Task.new
   end
 
-  def completed
-    @task = Task.find(params[:id])
-    complete = 'true' == params[:complete] ? Time.now : false
+  def create
+    @task = Task.new(task_params)
+    @task.save
 
-  	@task.update(completed_at: complete)
-
-    # render nothing: true
-    # render json: @task
-	end
-
-  def privacy
-    @task = Task.find(params[:id])
-    privacy = 'true' == params[:private]
-
-    @task.update(is_private: privacy)
+    respond_with(@task)
   end
 
   def edit
-    @task = Task.find(params[:id])
-  end
-
-  def show
     @task = Task.find(params[:id])
   end
 
@@ -41,18 +27,29 @@ class TasksController < ApplicationController
     respond_with(@task)
   end
 
-  def create
-    @task = Task.new(task_params)
-    @task.save
-
-    respond_with(@task)
-  end
-
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
 
     respond_with(@task)
+  end
+
+  def show
+    @task = Task.find(params[:id])
+  end
+
+  def completed
+    @task = Task.find(params[:id])
+    complete = 'true' == params[:complete] ? Time.now : false
+    @task.update(completed_at: complete)
+    # render nothing: true
+    # render json: @task
+  end
+
+  def privacy
+    @task = Task.find(params[:id])
+    privacy = 'true' == params[:private]
+    @task.update(is_private: privacy)
   end
 
   private

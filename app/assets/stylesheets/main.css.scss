@@ -7,6 +7,15 @@ body {
   padding-top: 70px;
 }
 
+.page-header {
+  margin: 20px 0;
+}
+
+.page-header .alert {
+  margin-bottom: 0;
+  margin-top: 15px;
+}
+
 div.alert:empty {
   display: none;
 }

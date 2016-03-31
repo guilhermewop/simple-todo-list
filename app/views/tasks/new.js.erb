@@ -1,6 +1,6 @@
-$("#modal-task").html("<%= j(render 'form') %>")
-$("#modal-task").modal("show")
+$("#modal-task").html("<%= j(render 'form') %>");
+$("#modal-task").modal("show");
 
 $('#modal-task').on('shown.bs.modal', function () {
-  $('#task_title').focus()
+  $('#task_title').focus();
 })
