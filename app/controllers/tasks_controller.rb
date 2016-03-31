@@ -9,6 +9,23 @@ class TasksController < ApplicationController
     @task = Task.new
   end
 
+  def completed
+    @task = Task.find(params[:id])
+    complete = 'true' == params[:complete] ? Time.now : false
+
+  	@task.update(completed_at: complete)
+
+    # render nothing: true
+    # render json: @task
+	end
+
+  def privacy
+    @task = Task.find(params[:id])
+    privacy = 'false' == params[:private]
+
+    @task.update(is_public: privacy)
+  end
+
   def edit
     @task = Task.find(params[:id])
   end

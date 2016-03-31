@@ -3,13 +3,9 @@
     <div class="row">
       <div class="col-md-1 text-center">
         <div class="btn-group" role="group" data-toggle="buttons">
-          <!-- <button class="btn btn-primary btn-sm <%= 'active' if task.completed? %>" type="button">
-            <span aria-hidden="true" class="glyphicon glyphicon-ok"></span>
-          </button> -->
-
-          <%= button_to task, class: 'btn btn-primary btn-sm', remote: true, method: :update do %>
-            <%= content_tag :span, '', "aria-hidden" => "true", class: "glyphicon glyphicon-ok" %>
-          <% end %>
+          <%= mark_as_completed_button_to task,
+              icon_completed: 'glyphicon glyphicon-check',
+              icon_uncompleted: 'glyphicon glyphicon-unchecked' %>
         </div>
       </div>
       <div class="col-md-7 text-left">
@@ -35,10 +31,10 @@
           </div>
 
           <div class="btn-group" role="group" data-toggle="buttons">
-            <button class="btn btn-warning btn-sm <%= privacity_class(task) %>" type="button">
+            <!-- <button class="btn btn-warning btn-sm <%= privacity_class(task) %>" type="button">
               <span aria-hidden="true" class="glyphicon glyphicon-lock"></span>
-            </button>
-            <input type="checkbox" name="my-checkboax" checked>
+            </button> -->
+            <%= mark_privacy_button_to task %>
           </div>
 
           <div class="btn-group" role="group">

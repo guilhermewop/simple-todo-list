@@ -5,12 +5,8 @@ class Task < ActiveRecord::Base
   scope :only_public_tasks, -> { where(public: true) }
   scope :only_parent, -> { where(parent: nil) } # not include subtasks
 
-  def private?
-    self.public != true
-  end
-
-  def completed?
-    self.completed != nil
+  def is_completed?
+    self.completed_at != nil
   end
 
   def self.most_recent

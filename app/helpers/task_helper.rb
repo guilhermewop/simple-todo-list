@@ -1,33 +1,26 @@
 module TaskHelper
 
   def privacity_class(task)
-    'active' if task.private?
+    'active' if task.is_public?
   end
 
-  def link_to_with_icon(icon_css, title, url, options = {})
-    icon = content_tag(:i, nil, class: icon_css)
-    title_with_icon = icon << ' ' << title
-    link_to(title_with_icon, url, options)
+  def mark_as_completed_button_to(task, options = {})
+    completed = !task.is_completed?
+
+    icon_class = completed ? options[:icon_uncompleted] : options[:icon_completed]
+
+    icon = content_tag :span, '', "aria-hidden" => "true", class: icon_class
+    link_to icon, completed_task_path(task, complete: completed), method: :patch, remote: true, class: 'btn btn-default btn-sm'
   end
 
-  def toggle_button_to(icon_css, title, url, options = {})
-    on_options = {
-      'data-remote' => true,
-      'data-type' => 'script',
-      'data-method' => 'PUT',
-      class: options[:on]
-    }
+  def mark_privacy_button_to(task)
+    is_public = task.is_public?
 
-    off_options = {
-      'data-remote' => true,
-      'data-type' => 'script',
-      'data-method' => 'DELETE',
-      class: options[:off]
-    }
+    active_class = is_public ? '' : 'active'
 
-    on_link = link_to_with_icon(icon_css, title, url, on_options)
-    off_link = link_to_with_icon(icon_css, title, url, off_options)
-
-    on_link << off_link
+    icon = content_tag :span, '', "aria-hidden" => "true", class: 'glyphicon glyphicon-lock'
+    link_to icon, privacy_task_path(task, private: is_public),
+      method: :patch, remote: true,
+      class: 'btn btn-warning btn-sm ' + active_class
   end
 end

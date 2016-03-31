@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   resources :index
 
   resources :tasks do
+    member do
+      patch :completed, to: "tasks#completed"
+      patch :privacy, to: "tasks#privacy"
+    end
     resources :subtasks
   end
 end
