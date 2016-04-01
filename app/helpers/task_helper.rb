@@ -21,10 +21,16 @@ module TaskHelper
   def mark_as_completed_button_to(task, options = {})
     uncompleted = !task.is_completed?
 
+    unless task.parent_id
+      path = completed_task_path(task, complete: uncompleted)
+    else
+      path = completed_task_subtask_path(task.parent_id, task, complete: uncompleted)
+    end
+
     icon_class = uncompleted ? options[:icon_uncompleted] : options[:icon_completed]
 
     icon = content_tag :span, '', "aria-hidden" => "true", class: icon_class
-    link_to icon, completed_task_path(task, complete: uncompleted), method: :patch, remote: true, class: 'btn btn-default btn-sm'
+    link_to icon, path, method: :patch, remote: true, class: 'btn btn-default btn-sm'
   end
 
   def mark_privacy_button_to(task)

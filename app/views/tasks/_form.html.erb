@@ -1,6 +1,5 @@
 <div class="modal-dialog">
   <div class="modal-content">
-    <%= @task.inspect %>
     <%= simple_form_for @task, url: form_action(@task), html: { class: "form-task"}, remote: true do |f| %>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">

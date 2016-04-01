@@ -10,6 +10,10 @@ Rails.application.routes.draw do
       patch :completed, to: "tasks#completed"
       patch :privacy, to: "tasks#privacy"
     end
-    resources :subtasks
+    resources :subtasks do
+      member do
+        patch :completed, to: "subtasks#completed"
+      end
+    end
   end
 end

@@ -1,1 +1,1 @@
-$("#task-id-<%= @task.id %>").replaceWith("<%= j(render @task) %>")
+$("#task-id-<%= @task.id %>").replaceWith("<%= j render partial: 'subtask', locals: {subtask: @task} %>")

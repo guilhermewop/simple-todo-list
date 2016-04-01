@@ -20,7 +20,7 @@ class SubtasksController < ApplicationController
     @task = Task.find(params[:task_id]).subtasks.build(task_params)
     @task.save
 
-    respond_with(@task, 'subtasks/create')
+    respond_with(@task)
   end
 
   def edit
