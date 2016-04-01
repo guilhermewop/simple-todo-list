@@ -3,16 +3,15 @@
 <% else %>
   var $task_item = $("#task-id-<%= @task.id %>");
 
-  var content = "<%= j(render @task) %>"
+  var content = "<%= j render partial: 'subtasks/subtask', locals: {subtask: @task} %>";
 
   if(0 == $task_item.length) {
-    $("#tasks div.panel-group").prepend(content);
+    $("#list-<%= @task.parent_id %> ul").prepend(content);
   } else {
     $task_item.replaceWith(content);
   }
 
   $("#modal-task").modal("hide");
-  $("#alert-no-tasks").hide();
 
   var $alert = $('#alert-save');
 

@@ -1,6 +1,7 @@
 <div class="modal-dialog">
   <div class="modal-content">
-    <%= simple_form_for @task, html: { class: "form-task"}, remote: true do |f| %>
+    <%= @task.inspect %>
+    <%= simple_form_for @task, url: form_action(@task), html: { class: "form-task"}, remote: true do |f| %>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -9,7 +10,9 @@
       </div>
       <div class="modal-body">
           <%= f.input :title, required: true %>
+          <% if !@task.parent_id %>
           <%= f.input :is_private, label: 'Private' %>
+          <% end %>
       </div>
       <div class="modal-footer">
         <%= f.submit 'Save', class: 'btn btn-primary' %>

@@ -1,5 +1,5 @@
 $("#task-id-<%= @task.id %>").remove();
 
-if (0 == $("#tasks").find('ul.list-group li').length) {
+if (0 == $("#tasks").find('div.panel-group').length) {
   $('#alert-no-tasks').removeClass('hidden').show();
 }

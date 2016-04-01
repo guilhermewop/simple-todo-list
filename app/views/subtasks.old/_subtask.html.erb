@@ -1,0 +1,32 @@
+<li id="task-id-<%= subtask.id %>" class="list-group-item">
+  <div class="row">
+    <div class="col-md-1 text-center">
+      <div class="btn-group" role="group" data-toggle="buttons">
+        <%= mark_as_completed_button_to subtask,
+            icon_completed: 'glyphicon glyphicon-check',
+            icon_uncompleted: 'glyphicon glyphicon-unchecked' %>
+      </div>
+    </div>
+    <div class="col-md-7 text-left">
+      <h4 class="panel-title">
+        <a aria-controls="subtask-<%= subtask.id %>" aria-expanded="false" href="#list-<%= subtask.parent_id %>" data-toggle="collapse" role="button" class=""> <%= task_title subtask %></a>
+      </h4>
+
+    </div>
+    <div class="col-md-4 col-xs-12">
+      <div class="btn-toolbar btn-group-sm pull-right" role="toolbar">
+        <div class="btn-group" role="group">
+          <%= link_to edit_task_path(subtask), remote: true, class: 'btn btn-info btn-sm' do %>
+            <%= content_tag :span, '', "aria-hidden" => "true", class: "glyphicon glyphicon-edit" %>
+          <% end %>
+        </div>
+
+        <div class="btn-group" role="group">
+          <%= button_to subtask, class: 'btn btn-danger btn-sm', remote: true, method: :delete do %>
+            <%= content_tag :span, '', "aria-hidden" => "true", class: "glyphicon glyphicon-trash" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>

@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  has_many :subtasks, class_name: "Task", foreign_key: "parent_id"
+  has_many :subtasks, class_name: "Task", foreign_key: "parent_id", dependent: :delete_all
   belongs_to :parent, class_name: "Task"
   validates :title, presence: true
   scope :only_public_tasks, -> { where(public: true) }

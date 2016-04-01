@@ -1,4 +1,4 @@
-<div class="panel panel-default task-parent" id="task-id-<%= task.id %>">
+<div class="panel panel-default task" id="task-id-<%= task.id %>">
   <div id="task-<%= task.id %>" role="tab" class="panel-heading">
     <div class="row">
       <div class="col-md-1 text-center">
@@ -22,9 +22,9 @@
             </a>
           </div>
           <div class="btn-group" role="group">
-            <button class="btn btn-primary btn-sm" type="button">
-              <span aria-hidden="true" class="glyphicon glyphicon-plus"></span>
-            </button>
+            <%= link_to new_task_subtask_path(task.id), remote: true, class: 'btn btn-primary btn-sm' do %>
+              <%= content_tag :span, '', "aria-hidden" => "true", class: "glyphicon glyphicon-plus" %>
+            <% end %>
           </div>
 
           <div class="btn-group" role="group">
@@ -47,11 +47,9 @@
     </div>
   </div>
 
-  <div aria-labelledby="task-<%= task.id %>" role="tabpanel" class="panel-collapse collapse" id="list-<%= task.id %>" aria-expanded="true" style="">
+  <div aria-labelledby="task-<%= task.id %>" role="tabpanel" class="panel-collapse collapse subtask" id="list-<%= task.id %>" aria-expanded="true" style="">
     <ul class="list-group">
-      <% task.subtasks.each do |subtask| %>
-      <li class="list-group-item"><%= task_title subtask %></li>
-      <% end %>
+      <%= render partial: "subtasks/subtask", collection: task.subtasks %>
     </ul>
   </div>
 </div>

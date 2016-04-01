@@ -1,8 +1,15 @@
 module TaskHelper
 
   def form_title(task)
-    title = task.new_record? ? 'New Task' : "Editing Task \##{task.id}"
+    task_type = !task.parent_id ? 'Task' : 'Subtask'
+    title = task.new_record? ? "New #{task_type}" : "Editing #{task_type} \##{task.id}"
     title.html_safe
+  end
+
+  def form_action(task)
+    path = !task.parent_id ? '/tasks' : "/tasks/#{task.parent_id}/subtasks"
+    path = path + "/#{task.id}" unless task.new_record?
+    path.to_s
   end
 
   def task_title(task)
