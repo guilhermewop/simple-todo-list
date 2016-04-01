@@ -6,7 +6,8 @@ module TaskHelper
   end
 
   def task_title(task)
-    title = task.is_completed? ? "<h4><s>#{task.title}</s></h4>" : "<h4>#{task.title}</h4>"
+    title = "##{task.id} #{task.title}"
+    title = "<s>#{title}</s>" if task.is_completed?
     title.html_safe
   end
 
