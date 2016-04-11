@@ -4,12 +4,15 @@
   var $task_item = $("#task-id-<%= @task.id %>");
 
   var content = "<%= j render partial: 'subtask', locals: {subtask: @task} %>";
-
-  if(0 == $task_item.length) {
-    $("#list-<%= @task.parent_id %> ul").prepend(content);
+  if (0 == $task_item.length) {
+    $("#list-<%= @parent.id %> ul").prepend(content);
   } else {
     $task_item.replaceWith(content);
   }
+
+  var $parent_task_item = $("#task-id-<%= @parent.id %>");
+  var $subtasks_count = $parent_task_item.find('.subtasks-count .badge');
+  $subtasks_count.text(<%= @parent.subtasks.count %>);
 
   $("#modal-task").modal("hide");
 

@@ -16,13 +16,13 @@
       </div>
       <div class="col-md-4 col-xs-12">
         <div class="btn-toolbar btn-group-sm pull-right" role="toolbar">
-          <div class="btn-group" role="group">
+          <div class="btn-group subtasks-count" role="group">
             <a href="#list-<%= task.id %>" data-toggle="collapse" class="btn btn-default btn-sm" type="button">
               <span class="badge"><%= task.subtasks.count %></span> subtasks
             </a>
           </div>
           <div class="btn-group" role="group">
-            <%= link_to new_task_subtask_path(task.id), remote: true, class: 'btn btn-primary btn-sm' do %>
+            <%= link_to new_task_subtask_path(task), remote: true, class: 'btn btn-primary btn-sm' do %>
               <%= content_tag :span, '', "aria-hidden" => "true", class: "glyphicon glyphicon-plus" %>
             <% end %>
           </div>

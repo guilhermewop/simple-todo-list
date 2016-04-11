@@ -4,45 +4,39 @@ class SubtasksController < ApplicationController
   def index
     @tasks = Task.find(params[:task_id]).subtasks
               .order(completed_at: :asc, created_at: :desc)
-
-    respond_to do |format|
-      format.json { render json: @tasks }
-    end
   end
 
   def new
     @task = Task.find(params[:task_id]).subtasks.build
-
     render 'tasks/new'
   end
 
   def create
-    @task = Task.find(params[:task_id]).subtasks.build(task_params)
+    @parent = Task.find(params[:task_id])
+    @task = @parent.subtasks.build(task_params)
     @task.save
-
-    respond_with(@task)
+    respond_with(@parent, @task)
   end
 
   def edit
     @task = Task.find(params[:id])
+    render 'tasks/edit'
   end
 
   def update
     @task = Task.find(params[:id])
     @task.update(task_params)
+    @parent = @task.parent
 
-    respond_with(@task)
+    respond_with(@parent, @task)
   end
 
   def destroy
     @task = Task.find(params[:id])
+    @parent = @task.parent
     @task.destroy
 
-    respond_with(@task)
-  end
-
-  def show
-    @task = Task.find(params[:id])
+    respond_with(@parent, @task)
   end
 
   def completed

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :subtasks do
       member do
         patch :completed, to: "subtasks#completed"
+        delete :destroy, to: "subtasks#destroy", as: "destroy"
       end
     end
   end

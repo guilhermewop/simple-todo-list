@@ -34,16 +34,10 @@ class TasksController < ApplicationController
     respond_with(@task)
   end
 
-  def show
-    @task = Task.find(params[:id])
-  end
-
   def completed
     @task = Task.find(params[:id])
     complete = 'true' == params[:complete] ? Time.now : false
     @task.update(completed_at: complete)
-    # render nothing: true
-    # render json: @task
   end
 
   def privacy

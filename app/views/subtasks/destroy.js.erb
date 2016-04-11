@@ -1,1 +1,5 @@
 $("#task-id-<%= @task.id %>").remove();
+
+var $parent_task_item = $("#task-id-<%= @parent.id %>");
+var $subtasks_count = $parent_task_item.find('.subtasks-count .badge');
+$subtasks_count.text(<%= @parent.subtasks.count %>);
