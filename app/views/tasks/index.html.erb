@@ -1,34 +1,24 @@
-<div class="container">
-  <div class="page-header">
-    <div class="row">
-      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-        <h1>
-          Tasks
-          <%= link_to 'New', new_task_path, class: 'btn btn-primary btn-lg', remote: true %>
-        </h1>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-        <div id="alert-save" class="alert alert-success alert-dismissible hidden" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <p></p>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-4 hidden-sm hidden-xs"></div>
+<div class="page-header">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+      <h1>
+        Tasks
+        <%= link_to 'New', new_task_path, class: 'btn btn-primary btn-lg', remote: true %>
+      </h1>
     </div>
-    <div class="modal fade" id="modal-task" tabindex="-1" role="dialog"></div>
-  </div>
-
-  <div id="tasks" class="row">
-    <div class="col-md-12">
-        <div id="alert-no-tasks" class="alert alert-info <%= 'hidden' unless @tasks.count == 0 %>" role="alert">
-          There are no tasks!
-        </div>
-
-        <div role="tablist" class="panel-group">
-          <%= render @tasks %>
-        </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+      <div id="alert-save" class="alert alert-success alert-dismissible hidden" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <p></p>
+      </div>
     </div>
+    <div class="col-lg-4 col-md-4 hidden-sm hidden-xs"></div>
   </div>
-</div> <!-- /container -->
+  <div class="modal fade" id="modal-task" tabindex="-1" role="dialog"></div>
+</div>
+
+<%= render "filter" %>
+
+<%= render "list_tasks" %>

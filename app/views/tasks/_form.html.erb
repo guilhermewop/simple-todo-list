@@ -8,7 +8,7 @@
         <h4 class="modal-title"><%= form_title @task %></h4>
       </div>
       <div class="modal-body">
-          <%= f.input :title, required: true %>
+          <%= f.input :title, required: true, autofocus: true %>
           <% if !@task.parent_id %>
           <%= f.input :is_private, label: 'Private' %>
           <% end %>

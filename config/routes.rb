@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  root 'index#index'
+  # root 'index#index'
   devise_for :users
 
-  get 'index/index'
-  resources :index
+  # get 'index/index'
+  # resources :index
+
+  root to: 'tasks#index'
 
   resources :tasks do
     member do

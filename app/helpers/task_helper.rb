@@ -43,4 +43,23 @@ module TaskHelper
       method: :patch, remote: true,
       class: 'btn btn-warning btn-sm ' + active_class
   end
+
+  def link_filter_tasks(title, filter = {})
+    filtered = filter.values[0]
+
+    if filtered == 1
+      active_class = 'active'
+      filter[filter.keys[0]] = 0
+    else
+      active_class = ''
+      filter[filter.keys[0]] = 1
+    end
+    # pry
+    # span = content_tag :span, count.to_i, class: 'badge'
+    # link = link_to title.to_s.html_safe << span, tasks_path(filter), remote: true
+    link = link_to title, tasks_path(filter), remote: true
+
+    li = "<li role='presentation' class='" + active_class + "'>" + link + "</li>"
+    li.html_safe
+  end
 end

@@ -1,0 +1,3 @@
+$("#filter-actions").replaceWith("<%= j render 'filter' %>")
+
+$("#tasks").replaceWith("<%= j(render 'list_tasks', locals: {tasks: @tasks}) %>");

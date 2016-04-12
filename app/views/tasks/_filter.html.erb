@@ -1,0 +1,12 @@
+<div class="row" id="filter-actions">
+  <div class="col-md-12 filter-lists">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <ul class="nav nav-pills" role="tablist">
+          <%= link_filter_tasks('My Tasks', my_tasks: session[:filter_my_tasks]) %>
+          <%= link_filter_tasks('Users Tasks', users_tasks: session[:filter_users_tasks]) %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

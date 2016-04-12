@@ -14,15 +14,16 @@
 ActiveRecord::Schema.define(version: 20160323055518) do
 
   create_table "tasks", force: :cascade do |t|
-    t.integer  "parent_id",                 null: true
+    t.integer  "parent_id"
     t.string   "title"
     t.datetime "completed_at"
-    t.boolean  "is_private",  default: true
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.boolean  "is_private",   default: true
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "user_id",                     null: false
   end
 
-  add_foreign_key :tasks, :tasks, column: :parent_id, primary_key: "id", on_delete: :cascade
+  add_index "tasks", ["user_id"], name: "index_users_tasks"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

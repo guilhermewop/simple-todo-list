@@ -20,3 +20,19 @@
 .subtask .panel-title {
   font-size: 18px;
 }
+
+.filter-lists ul {
+  position: relative;
+  left:50%;
+  float:left;
+  margin-right:0;
+  margin-left:0;
+}
+
+.filter-lists li {
+  position:relative;
+  right:50%;
+  float:left;
+  margin:0;
+  list-style:none;
+}

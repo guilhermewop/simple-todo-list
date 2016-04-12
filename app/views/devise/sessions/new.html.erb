@@ -1,0 +1,14 @@
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-auth"}) do |f| %>
+  <h2 class="form-auth-heading text-center">Log in</h2>
+  <div class="form-inputs">
+    <%= f.input :email, placeholder: "Email address", required: false, autofocus: true %>
+    <%= f.input :password, placeholder: "Password", required: false %>
+    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+  </div>
+
+  <div class="form-actions">
+    <%= render "devise/shared/alerts" %>
+    <%= f.button :submit, 'Log in', class: 'btn btn-md btn-primary btn-block' %>
+    <%= render "devise/shared/links" %>
+  </div>
+<% end %>

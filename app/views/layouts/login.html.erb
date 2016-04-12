@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TODO List - Avenue Code Test</title>
+    <%= stylesheet_link_tag "login", :media => "all" %>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+  </head>
+  <body>
+
+    <div class="container">
+     <%= yield %>
+    </div> <!-- /container -->
+
+    <%= javascript_include_tag "application" %>
+
+    <script type="text/javascript">
+      <%= yield :js %>
+    </script>
+  </body>
+</html>

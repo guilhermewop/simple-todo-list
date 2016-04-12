@@ -14,6 +14,7 @@ class SubtasksController < ApplicationController
   def create
     @parent = Task.find(params[:task_id])
     @task = @parent.subtasks.build(task_params)
+    @task.user = current_user
     @task.save
     respond_with(@parent, @task)
   end

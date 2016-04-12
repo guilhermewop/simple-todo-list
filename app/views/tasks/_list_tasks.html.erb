@@ -1,0 +1,11 @@
+<div class="row" id="tasks">
+  <div class="col-md-12">
+      <div id="alert-no-tasks" class="alert alert-info <%= 'hidden' if @tasks.count > 0 %>" role="alert">
+        There are no tasks!
+      </div>
+
+      <div role="tablist" class="panel-group">
+        <%= render @tasks %>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form-auth" }) do |f| %>
+  <h2 class="form-auth-heading text-center">Forgot your password?</h2>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :email, placeholder: "Email address", required: true, autofocus: true %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Reset password', class: 'btn btn-md btn-primary btn-block' %>
+    <%= render "devise/shared/links" %>
+  </div>
+<% end %>
