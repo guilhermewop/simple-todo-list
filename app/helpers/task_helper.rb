@@ -34,14 +34,16 @@ module TaskHelper
   end
 
   def mark_privacy_button_to(task)
-    is_public = !task.is_private
-
-    active_class = !is_public ? 'active' : ''
+    active_class = task.is_private ? 'active' : ''
 
     icon = content_tag :span, '', "aria-hidden" => "true", class: 'glyphicon glyphicon-lock'
-    link_to icon, privacy_task_path(task, private: is_public),
+    link_to icon, privacy_task_path(task, private: !task.is_private),
       method: :patch, remote: true,
       class: 'btn btn-warning btn-sm ' + active_class
+  end
+
+  def inverse_filter(filter)
+    filter == 1 ? 0 : 1
   end
 
   def link_filter_tasks(title, filter = {})

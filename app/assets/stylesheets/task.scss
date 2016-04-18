@@ -15,6 +15,11 @@
 
 .task .panel-title {
   font-size: 22px;
+  color: #424242;
+}
+
+.subtask {
+  padding: 0;
 }
 
 .subtask .panel-title {
@@ -34,5 +39,47 @@
   right:50%;
   float:left;
   margin:0;
-  list-style:none;
 }
+
+.filter-lists li.title a {
+    background-color: transparent;
+    color: #6b6b6b;
+    cursor: default;
+    font-size: 18px;
+    pointer-events: none;
+}
+
+.filter-lists li a, .filter-lists li.active a, .filter-lists li.active a:hover {
+  color: #424242;
+  background-color: #eeeeee;
+}
+
+.panel-my-tasks {
+    border-color: #ccc;
+}
+
+.panel-my-tasks > .panel-heading {
+    background-color: #dff0d8;
+    border-color: #dff0d8;
+    color: #fff;
+}
+
+.nav-pills > li.my-tasks.active > a, .nav-pills > li.my-tasks > a:hover {
+    background-color: #dff0d8;
+}
+
+.panel-public-tasks {
+    border-color: #ccc;
+}
+
+.panel-public-tasks > .panel-heading {
+    background-color: #d9edf7;
+    border-color: #d9edf7;
+    color: #fff;
+}
+
+.nav-pills > li.public-tasks.active > a, .nav-pills > li.public-tasks > a:hover {
+  background-color: #d9edf7;
+}
+// acacac
+// 6d6d6d

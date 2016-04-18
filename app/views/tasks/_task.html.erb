@@ -1,4 +1,4 @@
-<div class="panel panel-default task" id="task-id-<%= task.id %>">
+<div class="panel <%= task.user == current_user ? 'panel-my-tasks' : 'panel-public-tasks' %> task" id="task-id-<%= task.id %>">
   <div id="task-<%= task.id %>" role="tab" class="panel-heading">
     <div class="row">
       <div class="col-md-1">
@@ -47,7 +47,7 @@
     </div>
   </div>
 
-  <div aria-labelledby="task-<%= task.id %>" role="tabpanel" class="panel-collapse collapse subtask" id="list-<%= task.id %>" aria-expanded="true" style="">
+  <div aria-labelledby="task-<%= task.id %>" role="tabpanel" class="panel-body panel-collapse collapse subtask" id="list-<%= task.id %>" aria-expanded="true" style="">
     <ul class="list-group">
       <%= render partial: "subtasks/subtask", collection: task.subtasks %>
     </ul>

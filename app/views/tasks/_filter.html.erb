@@ -3,8 +3,15 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <ul class="nav nav-pills" role="tablist">
-          <%= link_filter_tasks('My Tasks', my_tasks: session[:filter_my_tasks]) %>
-          <%= link_filter_tasks('Users Tasks', users_tasks: session[:filter_users_tasks]) %>
+          <li role='presentation' class='title'><a href="#">Filter: </a></li>
+
+          <li role='presentation' class="my-tasks <%= 'active' if @filter_my_tasks == 1 %>">
+            <%= link_to 'My Tasks', tasks_path(my_tasks: inverse_filter(@filter_my_tasks)), remote: true %>
+          </li>
+
+          <li role='presentation' class="public-tasks <%= 'active' if @filter_public_tasks == 1 %>">
+            <%= link_to 'Public Tasks', tasks_path(public_tasks: inverse_filter(@filter_public_tasks)), remote: true %>
+          </li>
         </ul>
       </div>
     </div>

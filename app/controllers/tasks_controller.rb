@@ -4,8 +4,8 @@ class TasksController < ApplicationController
   def index
     filter_tasks
 
-    @current_user_tasks = get_user_tasks
-    @public_tasks = get_all_users_public_tasks
+    @current_user_tasks = get_my_tasks
+    @public_tasks = get_all_public_tasks
 
     @tasks = @current_user_tasks + @public_tasks
   end
@@ -59,26 +59,26 @@ class TasksController < ApplicationController
 
   def filter_tasks
     if params[:my_tasks].nil?
-      filter_my_tasks = !session[:filter_my_tasks].nil? ? session[:filter_my_tasks] : 1
+      @filter_my_tasks = !session[:filter_my_tasks].nil? ? session[:filter_my_tasks] : 1
     else
-      filter_my_tasks = params[:my_tasks].to_i
+      @filter_my_tasks = params[:my_tasks].to_i
     end
 
-    if params[:users_tasks].nil?
-      filter_users_tasks = !session[:filter_users_tasks].nil? ? session[:filter_users_tasks] : 0
+    if params[:public_tasks].nil?
+      @filter_public_tasks = !session[:filter_public_tasks].nil? ? session[:filter_public_tasks] : 0
     else
-      filter_users_tasks = params[:users_tasks].to_i
+      @filter_public_tasks = params[:public_tasks].to_i
     end
 
-    session[:filter_my_tasks] = filter_my_tasks
-    session[:filter_users_tasks] = filter_users_tasks
+    session[:filter_my_tasks] = @filter_my_tasks
+    session[:filter_public_tasks] = @filter_public_tasks
   end
 
-  def get_user_tasks
-    1 == session[:filter_my_tasks] ? Task.only_parent.where(user: current_user).to_a : []
+  def get_my_tasks
+    1 == @filter_my_tasks ? Task.only_parent.where(user: current_user).to_a : []
   end
 
-  def get_all_users_public_tasks
-    1 == session[:filter_users_tasks] ? Task.only_parent.shared.where.not(user: current_user).to_a : []
+  def get_all_public_tasks
+    1 == @filter_public_tasks ? Task.only_parent.shared.where.not(user: current_user).to_a : []
   end
 end
