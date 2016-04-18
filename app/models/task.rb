@@ -3,17 +3,18 @@ class Task < ActiveRecord::Base
   belongs_to :parent, class_name: "Task"
   belongs_to :user
 
+  default_scope { order(updated_at: :desc, completed_at: :asc) }
+  scope :shared, -> { where(is_private: false) }
+  scope :only_parent, -> { where(parent: nil) } # not include subtasks
+
   validates :title, presence: true
   validates :user, presence: true
-
-  scope :only_public_tasks, -> { where(public: true) }
-  scope :only_parent, -> { where(parent: nil) } # not include subtasks
 
   def is_completed?
     self.completed_at != nil
   end
 
-  def self.most_recent
-    order(created_at: :desc)
-  end
+  # def self.most_recent
+  #   order(created_at: :desc)
+  # end
 end

@@ -2,12 +2,12 @@ class TasksController < ApplicationController
   respond_to :html, :js, :json
 
   def index
-    @tasks = Task.only_parent.order(completed_at: :asc, created_at: :desc)
-    # pry
     filter_tasks
-    # pry
-    # session[:filter_my_tasks] = filter_my_tasks
-    # session[:filter_users_tasks] = filter_users_tasks
+
+    @current_user_tasks = get_user_tasks
+    @public_tasks = get_all_users_public_tasks
+
+    @tasks = @current_user_tasks + @public_tasks
   end
 
   def new
@@ -72,5 +72,13 @@ class TasksController < ApplicationController
 
     session[:filter_my_tasks] = filter_my_tasks
     session[:filter_users_tasks] = filter_users_tasks
+  end
+
+  def get_user_tasks
+    1 == session[:filter_my_tasks] ? Task.only_parent.where(user: current_user).to_a : []
+  end
+
+  def get_all_users_public_tasks
+    1 == session[:filter_users_tasks] ? Task.only_parent.shared.where.not(user: current_user).to_a : []
   end
 end
