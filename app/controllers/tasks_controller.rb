@@ -1,5 +1,13 @@
 class TasksController < ApplicationController
   respond_to :html, :js, :json
+  attr_accessor :filter_my_tasks, :filter_public_tasks
+  # @@filter_my_tasks = 1
+  # @@filter_public_tasks = 0
+
+  def initilize
+    @filter_my_tasks = 1
+    @filter_public_tasks = 0
+  end
 
   def index
     filter_tasks
@@ -58,17 +66,33 @@ class TasksController < ApplicationController
   end
 
   def filter_tasks
-    if params[:my_tasks].nil?
-      @filter_my_tasks = !session[:filter_my_tasks].nil? ? session[:filter_my_tasks] : 1
-    else
+    # if params[:my_tasks].nil?
+    #   @filter_my_tasks = !session[:filter_my_tasks].nil? ? session[:filter_my_tasks] : 1
+    # else
+    #   @filter_my_tasks = params[:my_tasks].to_i
+    # end
+    #
+    # if params[:public_tasks].nil?
+    #   @filter_public_tasks = !session[:filter_public_tasks].nil? ? session[:filter_public_tasks] : 0
+    # else
+    #   @filter_public_tasks = params[:public_tasks].to_i
+    # end
+    unless params[:my_tasks].nil?
       @filter_my_tasks = params[:my_tasks].to_i
+      if @filter_my_tasks == 1
+        @filter_public_tasks = 0
+      end
     end
 
-    if params[:public_tasks].nil?
-      @filter_public_tasks = !session[:filter_public_tasks].nil? ? session[:filter_public_tasks] : 0
-    else
+    unless params[:public_tasks].nil?
       @filter_public_tasks = params[:public_tasks].to_i
+      if @filter_public_tasks == 1
+        @filter_my_tasks = 0
+      end
     end
+
+    @filter_my_tasks = 1 if @filter_my_tasks.nil?
+    @filter_public_tasks = 0 if @filter_public_tasks.nil?
 
     session[:filter_my_tasks] = @filter_my_tasks
     session[:filter_public_tasks] = @filter_public_tasks

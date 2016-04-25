@@ -1,18 +1,57 @@
 <div class="row" id="filter-actions">
   <div class="col-md-12 filter-lists">
     <div class="panel panel-default">
-      <div class="panel-body">
+      <div class="panel-body text-center">
+        <div role="group" class="btn-group btn-group-lg">
+            <!-- <a href="#" class="btn btn-default active">My Tasks <span class="badge">15</span></a>
+            <a href="#" class="btn btn-default">Public Tasks <span class="badge">4</span></a> -->
+            <%= link_filter_to('My Tasks ', 'my_tasks', @filter_my_tasks) %>
+            <%= link_filter_to('Public Tasks ', 'public_tasks', @filter_public_tasks) %>
+        </div>
+        <!--
         <ul class="nav nav-pills" role="tablist">
           <li role='presentation' class='title'><a href="#">Filter: </a></li>
+
+          <li role='presentation'>
+            <button class="btn btn-default" type="button">
+              Messages <span class="badge">4</span>
+            </button>
+          </li>
+
+          <li role="presentation" class="active"><a href="#">Home <span class="badge">42</span></a></li>
+
+          <li role='presentation' class="<%= 'active' if @filter_my_tasks == 1 %>">
+            <%= link_filter_to('My Tasks ', {filter: 'public_tasks'}, @filter_my_tasks) %>
+          </li>
+
+          <li role='presentation'>
+            <%= button_to tasks_path(public_tasks: inverse_filter(@filter_public_tasks)),
+                class: 'btn btn-default',
+                remote: true do %>
+              Public Tasks
+              <%= content_tag :span, '5', class: "badge" %>
+            <% end %>
+          </li>
+
+          <li role='presentation'>
+            <%= button_to tasks_path(public_tasks: inverse_filter(@filter_public_tasks)),
+                class: 'btn btn-default',
+                remote: true do %>
+              Public Tasks
+              <%= content_tag :span, '5', class: "badge" %>
+            <% end %>
+          </li>
 
           <li role='presentation' class="my-tasks <%= 'active' if @filter_my_tasks == 1 %>">
             <%= link_to 'My Tasks', tasks_path(my_tasks: inverse_filter(@filter_my_tasks)), remote: true %>
           </li>
+          <li role='presentation'>&nbsp;</li>
 
           <li role='presentation' class="public-tasks <%= 'active' if @filter_public_tasks == 1 %>">
             <%= link_to 'Public Tasks', tasks_path(public_tasks: inverse_filter(@filter_public_tasks)), remote: true %>
           </li>
         </ul>
+      -->
       </div>
     </div>
   </div>

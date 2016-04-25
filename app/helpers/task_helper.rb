@@ -46,6 +46,13 @@ module TaskHelper
     filter == 1 ? 0 : 1
   end
 
+  def link_filter_to(title, filter, value)
+    active_class = value == 1 ? 'active' : ''
+    inverse_value = value == 1 ? 0 : 1
+
+    link_to title, tasks_path(filter => inverse_value), remote: true, class: 'btn btn-default ' + active_class
+  end
+
   def link_filter_tasks(title, filter = {})
     filtered = filter.values[0]
 
